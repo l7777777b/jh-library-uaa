@@ -1,0 +1,14 @@
+version: '2'
+services:
+  jhlibraryuaa-app:
+    image: jhlibraryuaa
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://jhlibraryuaa-mysql:3306/jhlibraryuaa?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+  jhlibraryuaa-mysql:
+    extends:
+      file: mysql.yml
+      service: jhlibraryuaa-mysql
